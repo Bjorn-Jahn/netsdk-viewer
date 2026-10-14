@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>netsdk-viewer</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<header id="top" class="hidden">
+  <strong id="apptitle"></strong>
+  <nav id="tabs">
+    <button data-tab="live"></button>
+    <button data-tab="playback"></button>
+    <button data-tab="settings"></button>
+    <button data-tab="manage"></button>
+  </nav>
+  <span class="grow"></span>
+  <span id="device" class="muted"></span>
+  <button id="logout" class="secondary small"></button>
+</header>
+
+<main>
+  <section id="loginpanel" class="panel hidden">
+    <h1 id="logintitle"></h1>
+    <form id="loginform" class="row">
+      <div><label for="nvr" data-t="nvrAddress"></label><br><input id="nvr" type="text" placeholder="192.168.1.10"></div>
+      <div><label for="user" data-t="user"></label><br><input id="user" type="text" value="admin" autocomplete="username"></div>
+      <div><label for="pass" data-t="password"></label><br><input id="pass" type="password" autocomplete="current-password"></div>
+      <div><br><label class="plain"><input id="remember" type="checkbox"> <span data-t="remember"></span></label></div>
+      <div><br><button type="submit" data-t="login"></button></div>
+    </form>
+    <p id="loginerror" class="error"></p>
+  </section>
+
+  <!-- Live -->
+  <section id="tab-live" class="tab hidden">
+    <div class="panel">
+      <div class="row between">
+        <div class="row">
+          <button id="mode-wall" class="chip secondary small"></button>
+          <button id="mode-single" class="chip secondary small"></button>
+        </div>
+        <div class="row" id="wallcontrols">
+          <label class="plain"><span id="layoutlabel"></span>
+            <select id="layout"><option value="auto"></option><option value="1">1</option><option value="2">2 × 2</option>
+              <option value="3">3 × 3</option><option value="4">4 × 4</option></select></label>
+          <button id="wallfull" class="secondary small"></button>
+        </div>
+      </div>
+      <div id="wallpicker" class="cams row"></div>
+
+      <div id="wall" class="wall"></div>
+
+      <div id="single" class="hidden">
+        <div class="row" id="livebuttons"></div>
+        <div id="singlebox" class="singlebox">
+          <video id="liveplayer" controls playsinline muted disablepictureinpicture
+                 controlslist="nofullscreen nodownload noremoteplayback"></video>
+          <div id="backhint" class="backhint hidden"></div>
+          <div id="zoomlevel" class="zoomlevel hidden"></div>
+        </div>
+        <div class="row between">
+          <span id="livenow" class="muted"></span>
+          <div class="row">
+            <label class="plain"><input id="livesub" type="checkbox"> <span data-t="subStreamLive"></span></label>
+            <button id="snapshot" class="secondary small" data-t="snapshot" disabled></button>
+            <button id="singlefull" class="secondary small"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playback -->
+  <section id="tab-playback" class="tab hidden">
+    <div class="panel">
+      <video id="player" controls playsinline></video>
+      <div class="row between">
+        <div id="now" class="muted now" data-t="clickTimeline"></div>
+        <div class="row">
+          <button id="back" class="secondary small" disabled>−30 s</button>
+          <button id="fwd" class="secondary small" disabled>+30 s</button>
+          <button id="download" class="secondary small" disabled data-t="download"></button>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="row">
+        <button id="prevday" class="secondary small">◀</button>
+        <input id="date" type="date">
+        <button id="nextday" class="secondary small">▶</button>
+        <button id="show" class="small" data-t="show"></button>
+      </div>
+      <div id="cams" class="cams row"></div>
+      <p id="searchstatus" class="muted"></p>
+      <div class="scale" id="scale"></div>
+      <div id="timelines" class="timelines"></div>
+      <div class="legend">
+        <span><i style="background: var(--timing)"></i><span data-t="timing"></span></span>
+        <span><i style="background: var(--motion)"></i><span data-t="motion"></span></span>
+        <span><i style="background: var(--alarm)"></i><span data-t="alarm"></span></span>
+        <span><i style="background: var(--manual)"></i><span data-t="manual"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section id="tab-settings" class="tab hidden">
+    <div class="settings">
+      <nav id="settingsmenu" class="panel menu"></nav>
+      <div id="settingspage" class="panel page"></div>
+    </div>
+  </section>
+
+  <!-- Management -->
+  <section id="tab-manage" class="tab hidden">
+    <div id="managepage" class="panel"></div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+<div id="dialog" class="dialog hidden"><div class="panel"><p id="dialogtext"></p>
+  <div class="row end"><button id="dialogno" class="secondary"></button><button id="dialogyes" class="danger"></button></div></div></div>
+
+<script src="static/i18n.js"></script>
+<script src="static/app.js"></script>
+<script src="static/settings.js"></script>
+<script src="static/manage.js"></script>
+</body>
+</html>

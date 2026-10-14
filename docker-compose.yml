@@ -1,0 +1,14 @@
+services:
+  netsdk-viewer:
+    build: .
+    container_name: netsdk-viewer
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    environment:
+      # Address of your NVR (pre-filled on the login page; it can also be typed there).
+      NVR_URL: "http://192.168.1.10"
+      # Optional: names for the channels, overriding the names stored in the NVR.
+      # CHANNEL_NAMES: "1=Front door;2=Garage;3=Back yard"
+    volumes:
+      - ./data:/data
