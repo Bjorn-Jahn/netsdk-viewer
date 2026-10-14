@@ -3,6 +3,11 @@
 A web page for viewing and downloading recordings from "netsdk" network video
 recorders that works in any modern browser, on a computer or a phone.
 
+> **Only tested with one NVR:** a Hiseeu W-NVR K8216-W6 (firmware 3.6.14.0F).
+> It has not been tried on any other model or firmware. Other NVRs may work,
+> partly work or not work at all, and settings pages may write values your
+> model does not expect. See [Tested with](#tested-with).
+
 The NVR's own web page needs an old ActiveX/Flash browser plugin for playback,
 so in current browsers you can see the settings but not watch anything.
 netsdk-viewer talks to the same interfaces as that page and has the same four tabs:
@@ -30,11 +35,15 @@ The page is in Swedish or English, picked from the browser's language.
 
 ## Tested with
 
+Only one device so far:
+
 - Hiseeu W-NVR **K8216-W6** (Wi-Fi kit), firmware 3.6.14.0F, with H.265 cameras.
 
-Other NVRs whose web page is titled "Netword video client" and uses `/netsdk/`
-URLs (common in Wi-Fi camera kits) will probably work too. Please report which
-models work.
+Nothing else has been tested. Other NVRs whose web page is titled "Netword video
+client" and uses `/netsdk/` URLs (common in Wi-Fi camera kits) use the same
+interfaces and might work, but that is a guess, not something anyone has checked.
+Try it on a model you can afford to reset, and please open an issue saying which
+model and firmware worked or did not.
 
 ## Running it
 
